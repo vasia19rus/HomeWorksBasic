@@ -12,18 +12,19 @@ import json
 
 with open("Domashka5_7_Company.txt", "r", encoding='utf-8') as com:
     a = com.readlines()
-    b = []
     s = {}
     c = []
+    b = 0
+    sum = 0
     for i in a:
-        b.append(i.split())
-    o = 0
-    while o < len(b):
-        s.update({b[o][0]: (int(b[o][2]) - int(b[o][3]))})
-        o += 1
+        p = i.split()
+        s.update({p[0]: (int(p[2]) - int(p[3]))})
+        if int(p[2]) - int(p[3]) > 0:
+            sum += int(p[2]) - int(p[3])
+            b += 1
+    n = sum / b
     c.append(s)
     v = {}
-    n = ((int(s.get('Сказка')) + int(s.get('Matrioshka')) + int(s.get('Honey-cake')) + int(s.get('Brooms'))) / 4)
     v.update({'average_profit': n})
     c.append(v)
 with open("Domashka5_7.json", "x", encoding="utf-8") as write_j:
